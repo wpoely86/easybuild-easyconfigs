@@ -23,9 +23,13 @@ dependencies = [
 
 builddependencies = [('CMake', '3.2.2')]
 
+configopts = '-DMKL=on'
+
+parallel = 1
+
 sanity_check_paths = {
-    'files': [],
-    'dirs': ["."]
+    'files': ['lib/libchemps2.a', 'lib/libchemps2.so'],
+    'dirs': ['include/chemps2']
 }
 
 moduleclass = 'chem'
