@@ -21,16 +21,6 @@ dependencies = [
     ('Java', '1.7.0_10', '', True),  # Java bindings are built if Java is found, might as well provide it
 ]
 
-sanity_check_paths = {
-    'files': ['bin/%s' % x for x in ['R', 'Rscript']] +
-             ['lib64/R/include/%s' % x for x in ['Rconfig.h', 'Rdefines.h', 'Rembedded.h',
-                                                 'R.h', 'Rinterface.h', 'Rinternals.h',
-                                                 'Rmath.h', 'Rversion.h', 'S.h']] +
-             ['lib64/R/modules/%s' % x for x in ['internet.so', 'lapack.so', 'vfonts.so']] +
-             ['lib64/R/lib/libR.so'],
-    'dirs': []
-}
-
 name_tmpl = '%(name)s_%(version)s.tar.gz'
 ext_options = {
     'source_urls': [
@@ -41,7 +31,10 @@ ext_options = {
 }
 # Bioconductor packages have a different download url
 bioconductor_options = {
-    'source_urls': ['http://www.bioconductor.org/packages/2.11/bioc/src/contrib/'],
+    'source_urls': [
+        'http://www.bioconductor.org/packages/release/bioc/src/contrib/',
+        'http://www.bioconductor.org/packages/2.11/bioc/src/contrib/',
+    ],
     'source_tmpl': name_tmpl,
 }
 # !! order of packages is important !!
@@ -135,6 +128,7 @@ exts_list = [
     ('R.oo', '1.13.0', ext_options),
     ('R.matlab', '1.7.0', ext_options),
     ('Rniftilib', '0.0-32', ext_options),
+    ('gbm', '2.1', ext_options),
 ]
 
 moduleclass = 'lang'

@@ -3,8 +3,8 @@ version = "3.3-p2"
 versionsuffix = '-Python-2.7.3'
 
 homepage = 'http://www.mcs.anl.gov/petsc'
-description = """PETSc, pronounced PET-see (the S is silent), is a suite of data structures and routines for the scalable (parallel) solution
-of scientific applications modeled by partial differential equations."""
+description = """PETSc, pronounced PET-see (the S is silent), is a suite of data structures and routines for the
+ scalable (parallel) solution of scientific applications modeled by partial differential equations."""
 
 toolchain = {'name': 'goolf', 'version': '1.4.10'}
 toolchainopts = {'usempi': True, 'pic': True}
@@ -13,7 +13,7 @@ source_urls = ['http://ftp.mcs.anl.gov/pub/petsc/release-snapshots']
 sources = [SOURCELOWER_TAR_GZ]
 
 patches = [
-    'fix.patch',  # ignore failed ranlib check on use of '-c' argument
+    'PETSc_ranlib-fix.patch',
     'PETSc_no-BLACS.patch',
 ]
 
