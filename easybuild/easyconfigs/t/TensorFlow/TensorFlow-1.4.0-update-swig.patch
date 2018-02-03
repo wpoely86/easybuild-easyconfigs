@@ -1,0 +1,54 @@
+--- tensorflow/workspace.bzl.orig	2017-11-01 21:21:13.000000000 +0100
++++ tensorflow/workspace.bzl	2017-11-26 20:08:48.139075976 +0100
+@@ -471,13 +471,9 @@
+ 
+   native.new_http_archive(
+       name = "swig",
+-      sha256 = "58a475dbbd4a4d7075e5fe86d4e54c9edde39847cdb96a3053d87cb64a23a453",
+-      urls = [
+-          "http://mirror.bazel.build/ufpr.dl.sourceforge.net/project/swig/swig/swig-3.0.8/swig-3.0.8.tar.gz",
+-          "http://ufpr.dl.sourceforge.net/project/swig/swig/swig-3.0.8/swig-3.0.8.tar.gz",
+-          "http://pilotfiber.dl.sourceforge.net/project/swig/swig/swig-3.0.8/swig-3.0.8.tar.gz",
+-      ],
+-      strip_prefix = "swig-3.0.8",
++      sha256 = "7cf9f447ae7ed1c51722efc45e7f14418d15d7a1e143ac9f09a668999f4fc94d",
++      urls = ["http://prdownloads.sourceforge.net/swig/swig-3.0.12.tar.gz"],
++      strip_prefix = "swig-3.0.12",
+       build_file = str(Label("//third_party:swig.BUILD")),
+   )
+ 
+--- third_party/swig.BUILD.orig	2017-11-01 21:21:13.000000000 +0100
++++ third_party/swig.BUILD	2017-11-09 11:07:10.050970153 +0100
+@@ -28,6 +28,7 @@
+         "Source/Modules/contract.cxx",
+         "Source/Modules/directors.cxx",
+         "Source/Modules/emit.cxx",
++        "Source/Modules/interface.cxx",
+         "Source/Modules/lang.cxx",
+         "Source/Modules/main.cxx",
+         "Source/Modules/module.cxx",
+@@ -127,7 +128,6 @@
+         "Lib/python/defarg.swg",
+         "Lib/python/director.swg",
+         "Lib/python/embed.i",
+-        "Lib/python/embed15.i",
+         "Lib/python/exception.i",
+         "Lib/python/factory.i",
+         "Lib/python/file.i",
+@@ -271,7 +271,6 @@
+         "Lib/typemaps/swigobject.swg",
+         "Lib/typemaps/swigtype.swg",
+         "Lib/typemaps/swigtypemaps.swg",
+-        "Lib/typemaps/traits.swg",
+         "Lib/typemaps/typemaps.swg",
+         "Lib/typemaps/valtypes.swg",
+         "Lib/typemaps/void.swg",
+@@ -292,7 +291,7 @@
+           "#define HAVE_PCRE\n" +
+           "#define HAVE_POPEN\n" +
+           "#define PACKAGE_BUGREPORT \"http://www.swig.org\"\n" +
+-          "#define PACKAGE_VERSION \"3.0.8\"\n" +
++          "#define PACKAGE_VERSION \"3.0.12\"\n" +
+           "#define STDC_HEADERS\n" +
+           "#define SWIG_CXX \"bazel4lyfe\"\n" +
+           "#define SWIG_LIB \"external/swig/Lib\"\n" +

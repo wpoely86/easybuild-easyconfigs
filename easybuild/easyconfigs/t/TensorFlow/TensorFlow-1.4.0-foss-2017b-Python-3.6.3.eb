@@ -1,0 +1,34 @@
+name = 'TensorFlow'
+version = '1.4.0'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'https://www.tensorflow.org/'
+description = "An open-source software library for Machine Intelligence"
+
+toolchain = {'name': 'foss', 'version': '2017b'}
+
+source_urls = ['https://github.com/tensorflow/tensorflow/archive/']
+sources = ['v%(version)s.tar.gz']
+checksums = ['8a0ad8d61f8f6c0282c548661994a5ab83ac531bac496c3041dedc1ab021107b']
+
+patches = [
+    'TensorFlow-1.4.0-fix-enum34.patch',
+    'TensorFlow-1.4.0-fix-libs.patch',
+    'TensorFlow-1.4.0-fix-swig-fail.patch',
+    'TensorFlow-1.4.0-update-swig.patch',
+]
+
+builddependencies = [
+    ('Bazel', '0.7.0'),
+    ('wheel', '0.30.0', versionsuffix),
+    ('SWIG', '3.0.12', versionsuffix),
+]
+
+dependencies = [
+    ('Python', '3.6.3'),
+    ('protobuf-python', '3.4.0', versionsuffix),
+    ('CUDA', '9.0.176', '', True),
+    ('cuDNN', '7.0.5', '-CUDA-9.0.176', True),
+]
+
+moduleclass = 'lib'

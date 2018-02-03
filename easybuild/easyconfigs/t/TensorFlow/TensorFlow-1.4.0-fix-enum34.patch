@@ -1,0 +1,23 @@
+diff -ur tensorflow-1.4.0.orig/tensorflow/tools/pip_package/setup.py tensorflow-1.4.0/tensorflow/tools/pip_package/setup.py
+--- tensorflow-1.4.0.orig/tensorflow/tools/pip_package/setup.py	2017-11-01 21:21:13.000000000 +0100
++++ tensorflow-1.4.0/tensorflow/tools/pip_package/setup.py	2018-02-02 15:58:56.682349618 +0100
+@@ -32,7 +32,6 @@
+ _VERSION = '1.4.0'
+ 
+ REQUIRED_PACKAGES = [
+-    'enum34 >= 1.1.6',
+     'numpy >= 1.12.1',
+     'six >= 1.10.0',
+     'protobuf >= 3.3.0',
+@@ -61,9 +60,10 @@
+       REQUIRED_PACKAGES.remove(package)
+       break
+ 
+-# weakref.finalize was introduced in Python 3.4
++# weakref.finalize and enum were introduced in Python 3.4
+ if sys.version_info < (3, 4):
+   REQUIRED_PACKAGES.append('backports.weakref >= 1.0rc1')
++  REQUIRED_PACKAGES.append('enum34 >= 1.1.6')
+ 
+ # pylint: disable=line-too-long
+ CONSOLE_SCRIPTS = [

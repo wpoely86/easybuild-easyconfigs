@@ -1,0 +1,50 @@
+From b3060a3907e67a3d14fb304436578dd3b20fcf8d Mon Sep 17 00:00:00 2001
+From: Ted Ying <yingted@gmail.com>
+Date: Mon, 20 Nov 2017 02:12:26 -0500
+Subject: [PATCH 1/2] Include _solib_local for MKL-DNN libs
+
+`_solib_local/libmklml_intel.so` is not getting included in the package.
+`build_pip_package.sh` has been updated to copy `*solib*` instead of just `_solib_k8`, so just update `setup.py` to include it.
+See https://github.com/tensorflow/tensorflow/issues/13711 for details.
+---
+ tensorflow/tools/pip_package/setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tensorflow/tools/pip_package/setup.py b/tensorflow/tools/pip_package/setup.py
+index a493c6f2aae..473c960c29c 100644
+--- a/tensorflow/tools/pip_package/setup.py
++++ b/tensorflow/tools/pip_package/setup.py
+@@ -176,7 +176,7 @@ def find_files(pattern, root):
+ 
+ 
+ matches = ['../' + x for x in find_files('*', 'external') if '.py' not in x]
+-matches += ['../' + x for x in find_files('*', '_solib_k8') if '.py' not in x]
++matches += ['../' + x for x in find_files('*', '_solib_*') if '.py' not in x]
+ 
+ if os.name == 'nt':
+   EXTENSION_NAME = 'python/_pywrap_tensorflow_internal.pyd'
+
+From 9de2a9a5ed217a2bddfe9bede8777188efd3b6a5 Mon Sep 17 00:00:00 2001
+From: Ted Ying <yingted@gmail.com>
+Date: Sat, 16 Dec 2017 01:51:13 -0500
+Subject: [PATCH 2/2] Don't glob for `_solib_local` and `_solib_k8`
+
+`find_files` doesn't accept globs for `root`.
+---
+ tensorflow/tools/pip_package/setup.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/tensorflow/tools/pip_package/setup.py b/tensorflow/tools/pip_package/setup.py
+index 473c960c29c..3e18236c799 100644
+--- a/tensorflow/tools/pip_package/setup.py
++++ b/tensorflow/tools/pip_package/setup.py
+@@ -176,7 +176,8 @@ def find_files(pattern, root):
+ 
+ 
+ matches = ['../' + x for x in find_files('*', 'external') if '.py' not in x]
+-matches += ['../' + x for x in find_files('*', '_solib_*') if '.py' not in x]
++matches += ['../' + x for x in find_files('*', '_solib_k8') if '.py' not in x]
++matches += ['../' + x for x in find_files('*', '_solib_local') if '.py' not in x]
+ 
+ if os.name == 'nt':
+   EXTENSION_NAME = 'python/_pywrap_tensorflow_internal.pyd'
