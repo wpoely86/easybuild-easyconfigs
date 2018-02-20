@@ -46,7 +46,7 @@ dependencies = [
     ('cuDNN', '7.0.5', '-CUDA-9.1.85', True),
 ]
 
-configopts = '-DBLAS=mkl -DUSE_OPENCV=0 -DUSE_MKL2017_AS_DEFAULT_ENGINE=1 -DCPU_ONLY=1'
+configopts = '-DBLAS=mkl -DUSE_OPENCV=0 -DUSE_MKL2017_AS_DEFAULT_ENGINE=1 -DCPU_ONLY=0 -DUSE_CUDNN=1'
 
 modextrapaths = {'PYTHONPATH': ['python']}
 
